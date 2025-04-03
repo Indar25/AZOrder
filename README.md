@@ -1,7 +1,3 @@
-// --------------------------------------------------
-// README - Order API (Markdown for GitHub)
-// --------------------------------------------------
-
 # 🛒 Order API
 
 The **Order API** is a .NET 8 Web API that handles customer orders as part of a distributed system. It communicates with the Payment API using RabbitMQ and participates in the **Saga Pattern (Choreography-based)**.
