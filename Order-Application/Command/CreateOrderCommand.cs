@@ -2,6 +2,7 @@
 using FluentValidation;
 using MediatR;
 using Order_Domain.Domain;
+using Order_Domain.Domain.Enum;
 using Order_Persistence;
 
 namespace Order_Application.Command
@@ -28,6 +29,8 @@ namespace Order_Application.Command
             order.Id = Guid.NewGuid();
             order.CreatedAt = DateTime.UtcNow;
             order.UpdatedAt = DateTime.UtcNow;
+            order.Status = OrderStatus.Initiate;
+
             await _unitOfWork.OrdersRepository.AddAsync(order);
             await _unitOfWork.CommitAsync(cancellationToken);
             return order.Id;

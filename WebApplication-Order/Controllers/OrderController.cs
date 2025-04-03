@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Order_Application.Command;
 using Order_Application.Query;
+using Shared.Contracts.Event;
 
 namespace WebApplication_Order.Controllers;
 
@@ -10,9 +12,11 @@ namespace WebApplication_Order.Controllers;
 public class OrderController : ControllerBase
 {
     private readonly ISender _mediator;
-    public OrderController(ISender mediator)
+    private readonly IPublishEndpoint _publishEndpoint;
+    public OrderController(ISender mediator, IPublishEndpoint publishEndpoint)
     {
         _mediator = mediator;
+        _publishEndpoint = publishEndpoint;
     }
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
@@ -31,10 +35,13 @@ public class OrderController : ControllerBase
         return Ok(orders);
     }
     [HttpPost]
-    public async Task<IActionResult> Create(CreateOrderCommand request)
+    public async Task<IActionResult> Create(CreateOrderCommand command)
     {
-        var result = await _mediator.Send(request);
-        return Ok(result);
+        var orderId = await _mediator.Send(command);
+        var orderCreatedEvent = new OrderCreatedEvent(orderId, command.TotalAmount, command.CustomerEmail);
+
+        await _publishEndpoint.Publish(orderCreatedEvent);
+        return Ok(orderId);
     }
 
     [HttpPut("{id}")]

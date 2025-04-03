@@ -15,6 +15,7 @@ namespace WebApplication_Order
             builder.Services.AddControllers();
             builder.Services.AddAuthorization();
 
+            builder.Services.AddMessaging();
             builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
             builder.Services.AddEndpointsApiExplorer();

@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Order_Domain.Domain.Enum;
 using Order_Persistence;
 
 namespace Order_Application.Command;
@@ -10,6 +11,7 @@ public class UpdateOrderCommand : IRequest<bool>
     public string? CustomerEmail { get; set; }
     public string? ShippingAddress { get; set; }
     public decimal? TotalAmount { get; set; }
+    public OrderStatus Status { get; set; }
 }
 
 public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, bool>

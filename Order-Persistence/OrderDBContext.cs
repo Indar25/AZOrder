@@ -20,6 +20,7 @@ public class OrderDBContext : DbContext
             entity.Property(e => e.CustomerName).IsRequired().HasMaxLength(50);
             entity.Property(e => e.CustomerEmail).IsRequired().HasMaxLength(100);
             entity.HasIndex(e => e.CustomerEmail).IsUnique();
+            entity.Property(e => e.Status).HasConversion<string>();
         });
     }
 }
