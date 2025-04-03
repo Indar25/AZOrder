@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Order_Persistence;
 
@@ -30,4 +31,14 @@ public class GeneralRepository<TEntity> : IRepository<TEntity> where TEntity : c
     {
         _dbContext.Set<TEntity>().Remove(entity);
     }
+
+    public async Task<List<TEntity>> GetAsync(Expression<Func<TEntity, bool>>? predicate = null)
+    {
+        var query = _dbContext.Set<TEntity>().AsQueryable();
+        if (predicate != null)
+            query = query.Where(predicate);
+
+        return await query.ToListAsync();
+    }
+
 }

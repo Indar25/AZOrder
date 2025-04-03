@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order-API", "WebApplication-Order\Order-API.csproj", "{3E2BA011-DE32-4921-B89F-23C117E5A55F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.API", "WebApplication-Order\Order.API.csproj", "{3E2BA011-DE32-4921-B89F-23C117E5A55F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order-Application", "Order-Application\Order-Application.csproj", "{AB9462D1-D5D6-437D-BB0B-9CC4AA62A2E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Application", "Order-Application\Order.Application.csproj", "{AB9462D1-D5D6-437D-BB0B-9CC4AA62A2E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order-Core", "Order-Domain\Order-Core.csproj", "{FB0BA7D5-3F3B-44BD-A1BF-6728D862D945}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Core", "Order-Domain\Order.Core.csproj", "{FB0BA7D5-3F3B-44BD-A1BF-6728D862D945}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order-Infrastructure", "Order-Infrastructure\Order-Infrastructure.csproj", "{33E99395-0178-4966-A626-A5C1EA2F30D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Infrastructure", "Order-Infrastructure\Order.Infrastructure.csproj", "{33E99395-0178-4966-A626-A5C1EA2F30D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order-Persistence", "Order-Persistence\Order-Persistence.csproj", "{B32120BD-93BC-4F32-A9BB-EACBCA868174}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Persistence", "Order-Persistence\Order.Persistence.csproj", "{B32120BD-93BC-4F32-A9BB-EACBCA868174}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
