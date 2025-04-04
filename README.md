@@ -193,9 +193,12 @@ Choreography	Services react to events and coordinate via messaging (MassTransit 
 
 ---
 ### ✅ Summary: What / Why / When
-Question	Answer
-What?	A pattern for managing distributed workflows with local transactions and compensation
-Why?	Ensures consistency across microservices without using distributed transactions
-When?	Use when your process spans multiple services and can tolerate eventual consistency
+---
+### What?	
+A pattern for managing distributed workflows with local transactions and compensation
+### Why?	
+Ensures consistency across microservices without using distributed transactions
+### When?	
+Use when your process spans multiple services and can tolerate eventual consistency
 
 ---
