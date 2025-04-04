@@ -125,12 +125,13 @@ docker run -d \
 - Login: `guest` / `guest`
 
 ---
-🧠 What is the Saga Pattern?
+### 🧠 What is the Saga Pattern?
 The Saga Pattern is a design pattern used to manage distributed transactions across multiple microservices without using a traditional ACID (atomic) transaction.
 
 Instead of locking resources across services (which doesn't scale), a Saga breaks the process into a sequence of local transactions, each followed by a compensating action (in case something goes wrong).
----#
-✅Why Use the Saga Pattern?
+
+---
+### ✅Why Use the Saga Pattern?
 🚀 Because in microservices:
 Distributed transactions are hard (no shared DB, no 2-phase commit)
 
@@ -138,7 +139,8 @@ You need to keep data eventually consistent
 
 Services should be loosely coupled
 
-✨ Benefits:
+---
+### ✨ Benefits:
 Enables resilient, scalable workflows
 
 Maintains consistency across services
@@ -147,7 +149,8 @@ Allows for rollback using compensating actions
 
 Encourages event-driven architecture
 
-📍 When to Use the Saga Pattern?
+---
+### 📍 When to Use the Saga Pattern?
 You should consider using the Saga Pattern when:
 
 ✅ Use it when:
@@ -159,14 +162,15 @@ You want to avoid using distributed locks or 2PC
 
 Your business process can be broken into steps
 
-❌ Avoid when:
+---
+### ❌ Avoid when:
 You need strong consistency immediately (e.g., banking core balances)
 
 The process is short-lived and can be handled in a single service
 
 Operations cannot be rolled back (and no compensation is possible)
-
-🧩 Example Scenario
+---
+### 🧩 Example Scenario
 Let's say you have an e-commerce flow:
 
 Create Order
@@ -181,12 +185,17 @@ Each step is a local transaction
 
 If Step 3 fails (payment), you compensate Step 2 (release inventory), and maybe cancel the order
 
-🧱 Types of Sagas
+---
+### 🧱 Types of Sagas
 Type	Description
 Orchestration	One central service tells others what to do
 Choreography	Services react to events and coordinate via messaging (MassTransit supports this well)
-✅ Summary: What / Why / When
+
+---
+### ✅ Summary: What / Why / When
 Question	Answer
 What?	A pattern for managing distributed workflows with local transactions and compensation
 Why?	Ensures consistency across microservices without using distributed transactions
 When?	Use when your process spans multiple services and can tolerate eventual consistency
+
+---
