@@ -9,7 +9,7 @@ public class GetOrdersQueryHandler(IUnitOfWork _unitOfWork) : IRequestHandler<Ge
 {
     public async Task<List<Order>> Handle(GetOrdersQuery request, CancellationToken cancellationToken)
     {
-        var orders = await _unitOfWork.OrdersRepository.GetAsync();
+        var orders = await _unitOfWork.GetRepository<Order>().GetAsync();
 
         return orders;
     }

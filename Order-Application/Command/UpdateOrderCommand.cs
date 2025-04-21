@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Order_Domain.Domain;
 using Order_Domain.Domain.Enum;
 using Order_Persistence;
 
@@ -25,7 +26,7 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, boo
 
     public async Task<bool> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
-        var order = await _unitOfWork.OrdersRepository.GetByIdAsync(request.OrderId);
+        var order = await _unitOfWork.GetRepository<Order>().GetByIdAsync(request.OrderId);
         if (order is null) return false;
 
         if (!string.IsNullOrWhiteSpace(request.CustomerName))
@@ -38,7 +39,7 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, boo
             order.TotalAmount = request.TotalAmount.Value;
 
         order.UpdatedAt = DateTime.UtcNow;
-        _unitOfWork.OrdersRepository.Update(order);
+        _unitOfWork.GetRepository<Order>().Update(order);
         await _unitOfWork.CommitAsync(cancellationToken);
         return true;
     }

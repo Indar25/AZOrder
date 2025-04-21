@@ -12,7 +12,7 @@ public class GetOrderByIdQueryHandler(IUnitOfWork _unitOfWork) : IRequestHandler
 {
     public async Task<Order> Handle(GetOrderByIdQuery request, CancellationToken cancellationToken)
     {
-        var order = await _unitOfWork.OrdersRepository.GetByIdAsync(request.OrderId);
+        var order = await _unitOfWork.GetRepository<Order>().GetByIdAsync(request.OrderId);
 
         return order;
     }

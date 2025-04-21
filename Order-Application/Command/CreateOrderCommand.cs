@@ -31,7 +31,7 @@ namespace Order_Application.Command
             order.UpdatedAt = DateTime.UtcNow;
             order.Status = OrderStatus.Initiate;
 
-            await _unitOfWork.OrdersRepository.AddAsync(order);
+            await _unitOfWork.GetRepository<Order>().AddAsync(order);
             await _unitOfWork.CommitAsync(cancellationToken);
             return order.Id;
         }
