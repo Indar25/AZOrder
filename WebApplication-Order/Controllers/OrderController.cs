@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Order_Application.Command;
 using Order_Application.Query;
@@ -29,6 +30,7 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAll()
     {
         var orders = await _mediator.Send(new GetOrdersQuery());

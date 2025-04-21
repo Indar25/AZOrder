@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.IdentityModel.Tokens;
 using Order_Application;
 using Order_Application.Command;
 using Order_Persistence;
@@ -13,7 +14,29 @@ namespace WebApplication_Order
 
             // Add services to the container.
             builder.Services.AddControllers();
-            builder.Services.AddAuthorization();
+            builder.Services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "https://localhost:7172"; // Duende IdentityServer
+                options.RequireHttpsMetadata = false;
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    NameClaimType = "name",
+                    RoleClaimType = "role"
+                };
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("OrderScope", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "order.api");
+                });
+            });
+
 
             builder.Services.AddMessaging();
             builder.Services.AddApplication();
